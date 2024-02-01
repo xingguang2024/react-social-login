@@ -6,6 +6,8 @@ let facebookScopes = [
   'email'
 ]
 
+let facebookBusinessConfig = null
+
 /**
  * Loads Facebook SDK.
  * @param {string} appId
@@ -13,7 +15,7 @@ let facebookScopes = [
  * @param {array|string} version
  * @see https://developers.facebook.com/docs/javascript/quickstart
  */
-const load = ({ appId, scope, version }) => new Promise((resolve) => {
+const load = ({ appId, scope, version, configId, responseType, overrideDefaultResponseType }) => new Promise((resolve) => {
   // @TODO: handle errors
   if (document.getElementById('facebook-jssdk')) {
     return resolve()
@@ -32,6 +34,16 @@ const load = ({ appId, scope, version }) => new Promise((resolve) => {
 
     return acc
   }, []).join(',')
+
+  if (configId) {
+    // support for facebook business
+    // https://developers.facebook.com/docs/facebook-login/facebook-login-for-business/
+    facebookBusinessConfig = {
+      config_id: configId,
+      response_type: responseType,
+      override_default_response_type: overrideDefaultResponseType
+    }
+  }
 
   const firstJS = document.getElementsByTagName('script')[0]
   const js = document.createElement('script')
@@ -106,7 +118,7 @@ const checkLogin = () => new Promise((resolve, reject) => {
  */
 const login = () => new Promise((resolve, reject) => {
   window.FB.login((response) => handleLoginStatus(response)
-    .then(resolve, reject), { scope: facebookScopes })
+    .then(resolve, reject), (facebookBusinessConfig || { scope: facebookScopes }))
 })
 
 /**

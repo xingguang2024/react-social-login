@@ -11,6 +11,10 @@
 
 # React Social Login &middot; [![NPM version][npm:img]][npm:url] &middot; [![Standard - JavaScript Style Guide][standard:img]][standard:url] &middot; [![Dependencies][dependencies:img]][dependencies:url] &middot; [![License: MIT][license:img]][license:url]
 
+> Fork from [deepakaggarwal7/react-social-login](https://github.com/deepakaggarwal7/react-social-login)
+>
+> By support facebook business config, and upgrade uuid version.
+
 React Social Login is an HOC which provides social login through multiple providers.
 
 **Currently supports Amazon, Facebook, GitHub, Google, Instagram and ~~LinkedIn~~ as providers (more to come!)**
@@ -58,7 +62,7 @@ For GitHub provider, see [GitHub specifics][githubspecifics] first.
 ## Install
 
 ```shell
-$ npm install --save react-social-login
+$ npm install --save @clareai/react-social-login
 ```
 
 ## Usage
@@ -69,7 +73,7 @@ Create the component of your choice and transform it into a SocialLogin componen
 
 ```js
 import React from "react";
-import SocialLogin from "react-social-login";
+import SocialLogin from "@clareai/react-social-login";
 
 class SocialButton extends React.Component {
   render() {
@@ -153,6 +157,7 @@ Raw component props (before transform):
 | ----------------- | ------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | appId             | —       | string                                                                | Your app identifier (see [find my appId][findmyappid])                                                                     |
 | autoCleanUri      | false   | boolean                                                               | Enable auto URI cleaning with OAuth callbacks                                                                              |
+| configId          | —       | string                                                                | Your facebook business app config_id                                                                                       |
 | autoLogin         | false   | boolean                                                               | Enable auto login on `componentDidMount`                                                                                   |
 | gatekeeper        | —       | string                                                                | Gatekeeper URL to use for GitHub OAuth support (see [GitHub specifics][githubspecifics])                                   |
 | getInstance       | —       | function                                                              | Return node ref like `ref` function would normally do ([react known issue](https://github.com/facebook/react/issues/4213)) |
@@ -426,7 +431,7 @@ $ npm run start:insecure
 
 - Ability to add optional loader component. Thanks to [Kartik](https://github.com/karthikdivi)
 
-**v3.4.16** [26 Nov 2022] 
+**v3.4.16** [26 Nov 2022]
 
 - Fixes #228 based on comment from [ewinata](https://github.com/ewinata)
 

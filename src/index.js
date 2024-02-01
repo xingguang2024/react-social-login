@@ -33,6 +33,9 @@ const SocialLogin = (WrappedComponent, LoaderComponent) => class SocialLogin ext
     onLogoutSuccess: PropTypes.func,
     onInternetFailure: PropTypes.func,
     provider: PropTypes.oneOf(config.providers).isRequired,
+    configId: PropTypes.string,
+    responseType: PropTypes.string,
+    overrideDefaultResponseType: PropTypes.bool,
     redirect: (props, propName, componentName) => {
       if (props.provider === 'instagram' && (!props[propName] || typeof props[propName] !== 'string')) {
         return new Error(`Missing required \`${propName}\` prop of type \`string\` on ${componentName}.`)
@@ -74,8 +77,8 @@ const SocialLogin = (WrappedComponent, LoaderComponent) => class SocialLogin ext
    * Loads SDK on componentDidMount and handles auto login.
    */
   componentDidMount () {
-    const { appId, autoCleanUri, autoLogin, gatekeeper, redirect, scope, version } = this.props
-    this.loadPromise = cancelable(this.sdk.load({ appId, redirect, gatekeeper, scope, version })
+    const { appId, autoCleanUri, autoLogin, gatekeeper, redirect, scope, version, configId, responseType, overrideDefaultResponseType } = this.props
+    this.loadPromise = cancelable(this.sdk.load({ appId, redirect, gatekeeper, scope, version, configId, responseType, overrideDefaultResponseType })
       .then((accessToken) => {
         if (autoCleanUri) {
           cleanLocation()
@@ -268,6 +271,9 @@ const SocialLogin = (WrappedComponent, LoaderComponent) => class SocialLogin ext
     const originalProps = omit(this.props, [
       'appId',
       'scope',
+      'configId',
+      'responseType',
+      'overrideDefaultResponseType',
       'autoCleanUri',
       'autoLogin',
       'gatekeeper',

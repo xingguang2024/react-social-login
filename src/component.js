@@ -19,7 +19,10 @@ export default class SocialLogin extends Component {
       'google',
       'linkedin'
     ]).isRequired,
-    version: PropTypes.string
+    version: PropTypes.string,
+    configId: PropTypes.string,
+    responseType: PropTypes.string,
+    overrideDefaultResponseType: PropTypes.bool
   }
 
   static defaultProps = {

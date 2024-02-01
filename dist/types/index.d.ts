@@ -16,6 +16,9 @@ export interface Props {
   className?: string
   redirect?: string
   scope?: [] | string
+  configId?: string,
+  responseType?: string,
+  overrideDefaultResponseType?: boolean
   [key: string]: any
 }
 

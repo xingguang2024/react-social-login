@@ -1,5 +1,5 @@
 {
-  "name": "react-social-login",
+  "name": "@clareai/react-social-login",
   "version": "3.4.15",
   "description": "React Component for Login via Social Providers",
   "main": "dist/social-login.js",
@@ -43,7 +43,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/deepakaggarwal7/react-social-login.git"
+    "url": "git+https://github.com/xingguang2024/react-social-login.git"
   },
   "keywords": [
     "social",
@@ -62,7 +62,7 @@
     "fetch-jsonp": "1.1.3",
     "prop-types": "15.7.2",
     "react": "^16.13.1",
-    "uuid": "3.1.0",
+    "uuid": "^7.0.3",
     "webpack-cli": "^4.10.0",
     "whatwg-fetch": "2.0.3"
   },
